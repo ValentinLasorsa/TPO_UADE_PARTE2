@@ -19,18 +19,20 @@ total=0
 SiONoCochera=""
 # Datos del huesped
 def ingresoDatosUsuario():
+            listaHuesped=[]
             nombre=input("¿Cómo se llama? ")
-            datosDelHuesped.append(nombre)
+            listaHuesped.append(nombre)
             apellido=input("¿Y su apellido? ")
-            datosDelHuesped.append(apellido)
+            listaHuesped.append(apellido)
             dni=int(input("Ingrese su DNI, sin puntos y todo junto "))
-            datosDelHuesped.append(dni)
+            listaHuesped.append(dni)
             trabajo=input("¿A qué se dedica? ")
-            datosDelHuesped.append(trabajo)
+            listaHuesped.append(trabajo)
             telefono=int(input("Ingrese su teléfono sin prefijos y todo junto "))
-            datosDelHuesped.append(telefono)
+            listaHuesped.append(telefono)
             direccion=input("Digame su dirección ")
-            datosDelHuesped.append(direccion)
+            listaHuesped.append(direccion)
+            return listaHuesped
 # Tipos de habitaciones
 def tiposDeHabitaciones():
     tipoHabitacion = 0
@@ -42,9 +44,9 @@ def tiposDeHabitaciones():
     return tipoHabitacion, dias
 # Tipos de cochera
 def guardadoCochera():
-    SiONoCochera=input("¿Va a desear el uso de una cochera? SI o NO (respete mayúsculas) ")
+    SiONoCochera=input("¿Va a desear el uso de una cochera? ").strip().upper()
     while SiONoCochera != "SI" and SiONoCochera != "NO":
-        SiONoCochera=input("¿Va a desear el uso de una cochera? SI o NO (respete mayúsculas) ")
+        SiONoCochera=input("¿Va a desear el uso de una cochera? SI o NO ").strip().upper()
     cochera = 0
     if SiONoCochera == "SI":
             cochera=int(input("Ingrese si desea una común(1) o techada(2) "))
@@ -82,7 +84,7 @@ while dni > 0:
         huesped+=1
         dto=0
         nReserva=random.randint(1, 100)
-        ingresoDatosUsuario()
+        datosDelHuesped=ingresoDatosUsuario()
         tipoHabitacion, dias = tiposDeHabitaciones()
         SiONoCochera, cochera = guardadoCochera()
         precio, dto, subtotal = precioFinal(tipoHabitacion, dias, cochera)
